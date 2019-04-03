@@ -1,0 +1,79 @@
+<!-- 
+	webcam_compressed_pub.launch
+
+	This script launches the 'webcam_publisher' node (on this laptop)
+	which publishes a stream of images to the 'webcam/image' topic.  
+
+	The image transport used is 'compressed' (default 80% JPEG) which allows 
+	the video stream to be sent over local wifi network with relatively high 
+	picture quality and reasonably low latency.
+
+	 
+-->
+
+<launch>
+
+
+	<!-- create a parameterh) -->
+	<!-- <param name="/webcam_subscriber/image_transport" type="string" value="compressed" /> -->
+	
+
+	<!-- start the webcam video stream publisher node -->
+	<node pkg="webcam" name="webcam_publisher" type="webcam_publisher" args="1"/> 
+
+
+	<!-- start the webcam video stream subscriber node -->
+	<!-- <node pkg="webcam" name="webcam_subscriber" type="webcam_subscriber" />
+ -->
+
+</launch>
+
+
+
+
+<!-- NOTES: 
+
+	For node tags, the attribute 'type' is the name of the file (or executable?) 
+	being launched.  The attribute 'name' is what the node name will be when 
+	'rosnode list' command is run. 
+
+	The args="1" attribute passes command line arguments to the node.  In this case, 
+	the 1 is for using /dev/video1
+
+Follow these tutorials:
+
+	http://wiki.ros.org/image_transport/Tutorials/ExaminingImagePublisherSubscriber
+
+__________________________________________________________________________________
+
+On pi:
+	roscore
+	rosrun webcam webcam_publisher 0 # '0' is for using /dev/video0.
+
+
+(...via jetpack):
+
+On laptop:
+
+	rosparam set /webcam_subscriber/image_transport compressed 
+	rosrun webcam webcam_subscriber
+	
+
+
+
+
+
+	# changing __name is optional, but if removed, make sure to change the 
+	# '/compressed_listener/image_transport' in the line above.
+	# also, the node names from inside each .cpp (pub and sub) need 
+	# to be changed.
+
+
+(untested):
+
+	rosparam set /webcam_subscriber/image_transport compressed 
+	rosrun webcam webcam_subscriber
+
+
+-->
+
