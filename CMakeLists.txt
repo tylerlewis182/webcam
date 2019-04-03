@@ -145,10 +145,6 @@ target_link_libraries(webcam_publisher ${OpenCV_LIBS} ${catkin_LIBRARIES})
 add_executable(webcam_subscriber src/webcam_subscriber.cpp)
 target_link_libraries(webcam_subscriber ${OpenCV_LIBS} ${catkin_LIBRARIES})
 
-add_executable(webcam_stream_publisher src/webcam_stream_publisher.cpp)
-target_link_libraries(webcam_stream_publisher ${OpenCV_LIBS} ${catkin_LIBRARIES})
-
-
 
 
 ## Rename C++ executable without prefix
