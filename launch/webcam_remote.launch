@@ -1,27 +1,33 @@
 <!-- https://github.com/pandora-auth-ros-pkg/pandora_docs/wiki/Remote-Machines-Running-ROS-nodes -->
 
+<!-- 
+webcam_remote.launch
 
-<!-- Example: 
+This launch file, when run from this laptop, launches the webcam publisher on the pi.
 
-<launch>
-  <machine
-    name="<remote-machine-name>"
-    address="155.207.33.186"
-    user="<remote-machine-user>"
-    password="<ssh-password to the remote machine>"
-    timeout="<timeout-value for the ssh-connection>"
-    env-loader="/home/<remote-machine-user>/catkin_ws/devel/remote_env_loader.sh"
-  />
-  
-  <node
-    machine="<remote-machine-name>"
-    name="flir_lepton_hardware_interface"
-    pkg="flir_lepton_hardware_interface"
-    type="flir_lepton_hardware_interface_node"
-  />
-</launch>
+...make sure the webcam is plugged into the pi.
+
+
+NOTE: The /home/ty/picar_ws/devel/remote_env_loader.sh refers to 
+a file that should be created and saved on the pi. It should be made
+executable (chmod +x).  The contents of the file should be:
+
+
+#!/bin/bash
+
+source /opt/ros/kinetic/setup.bash
+source ~/picar_ws/devel/setup.bash
+
+export ROS_IP=192.168.0.5
+export ROS_MASTER_URI=http://192.168.0.5:11311
+
+#source /opt/ros/kinetic/setup.bash
+#source /home/ty/picar_ws/devel/setup.bash
+
+exec "$@"
 
 -->
+
 
 
 <launch>
