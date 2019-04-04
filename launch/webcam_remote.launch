@@ -1,0 +1,45 @@
+<!-- https://github.com/pandora-auth-ros-pkg/pandora_docs/wiki/Remote-Machines-Running-ROS-nodes -->
+
+
+<!-- Example: 
+
+<launch>
+  <machine
+    name="<remote-machine-name>"
+    address="155.207.33.186"
+    user="<remote-machine-user>"
+    password="<ssh-password to the remote machine>"
+    timeout="<timeout-value for the ssh-connection>"
+    env-loader="/home/<remote-machine-user>/catkin_ws/devel/remote_env_loader.sh"
+  />
+  
+  <node
+    machine="<remote-machine-name>"
+    name="flir_lepton_hardware_interface"
+    pkg="flir_lepton_hardware_interface"
+    type="flir_lepton_hardware_interface_node"
+  />
+</launch>
+
+-->
+
+
+<launch>
+	
+  <machine
+    name="pi"
+    address="192.168.0.5"
+    user="ty"
+    env-loader="/home/ty/picar_ws/devel/remote_env_loader.sh"
+    default="true"
+  />
+
+  <node
+    machine="pi"
+    name="webcam_publisher"
+    pkg="webcam"
+    type="webcam_publisher"
+    args="0"
+  />
+
+</launch>
